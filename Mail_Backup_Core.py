@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 def backup_config():
     # 导入config.ini文件信息
-    config_data = configparser.ConfigParser()
+    config_data = configparser.RawConfigParser()
     config_data.read("config.ini", encoding='utf-8')
 
     User = config_data.get('Setting', 'User')
@@ -95,7 +95,7 @@ def save_mailbox(Imap_url, Port, User, Passwd, email_box, Batch_size):
                                              time.localtime(
                                                  email.utils.mktime_tz(email.utils.parsedate_tz(my_msg['Date']))))
 
-                        savedir = './' + email_box + '/'
+                        savedir = './' + User + '/' + email_box + '/'
                         if not os.path.isdir(savedir):
                             os.makedirs(savedir)
 
